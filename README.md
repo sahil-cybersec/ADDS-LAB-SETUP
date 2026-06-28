@@ -30,19 +30,7 @@ Technologies Used
 •	DNS Server
 •	Group Policy Management
 •	VM Ware workstation pro
-________________________________________
-Screenshots
-The complete lab setup screenshots are available in the screenshots/ folder.
-Example screenshots include:
-•	Windows Server Installation
-•	Static IP Configuration
-•	AD DS Role Installation
-•	Domain Controller Promotion
-•	DNS Configuration
-•	Organizational Unit Creation
-•	User and Group Management
-•	Client Joined to Domain
-________________________________________
+
 Learning Outcomes
 Through this lab, I gained practical experience in:
 •	Active Directory Administration
@@ -52,6 +40,8 @@ Through this lab, I gained practical experience in:
 •	Organizational Unit Management
 •	Domain Management
 •	Group Policy Administration
+• network communications 
+• error fixing & torubleshoot 
 Author
 Sahilcybersec
 BCA Graduate (2026)
