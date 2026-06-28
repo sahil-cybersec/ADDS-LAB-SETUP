@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>work.com - AD Lab Environment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: { 900: '#0f172a', 800: '#1e293b', accent: '#00f6ff', neon: '#ff007c' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap');
+
+        body {
+            background-color: #0b1120;
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, transparent 70%);
+            color: #e2e8f0;
+        }
+
+        /* Playful Animated Gradient Text */
+        .text-gradient {
+            background: linear-gradient(270deg, #00f6ff, #ff007c, #7000ff, #00f6ff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 6s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Dotted Line Animation for Server Sync */
+        .sync-line {
+            stroke: #00f6ff;
+            stroke-width: 3;
+            stroke-dasharray: 8 8;
+            animation: data-flow 1.5s linear infinite;
+            opacity: 0.7;
+        }
+        
+        .sync-line-alt {
+            stroke: #ff007c;
+            stroke-width: 3;
+            stroke-dasharray: 8 8;
+            animation: data-flow-reverse 1.5s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes data-flow {
+            to { stroke-dashoffset: -32; }
+        }
+        
+        @keyframes data-flow-reverse {
+            to { stroke-dashoffset: 32; }
+        }
+
+        /* Hover effects */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 246, 255, 0.3);
+            border-color: rgba(0, 246, 255, 0.5);
+        }
+
+        /* Bouncing Icons */
+        .icon-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-6 md:p-12 selection:bg-cyber-neon selection:text-white">
+
+    <div class="max-w-6xl mx-auto space-y-12">
+        
+        <header class="text-center space-y-4">
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight">
+                <i class="fa-solid fa-network-wired text-cyber-accent icon-bounce inline-block mr-4"></i>
+                <span class="text-gradient">work.com</span> Lab
+            </h1>
+            <p class="text-xl text-slate-400 font-medium">Next-Gen Active Directory Infrastructure Deployment</p>
+        </header>
+
+        <section class="glass-card rounded-2xl p-8 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10">
+                <i class="fa-solid fa-server text-9xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold mb-4 flex items-center gap-3 text-white">
+                <i class="fa-solid fa-rocket text-cyber-neon"></i> Executive Summary
+            </h2>
+            <p class="text-lg leading-relaxed text-slate-300 relative z-10">
+                Welcome to the digital nerve center! This environment establishes a robust, four-node Active Directory architecture for the <strong>work.com</strong> domain. Built entirely on <em>Windows Server 2016 Standard Evaluation (1607)</em>, the topology ensures high availability through an Additional Domain Controller (ADC), secure branch-office operations via a Read-Only Domain Controller (RODC), and domain compartmentalization using a Child Domain Controller (CDC).
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <section class="glass-card rounded-2xl p-8 flex flex-col">
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 text-white">
+                    <i class="fa-solid fa-sitemap text-cyber-accent"></i> Architecture Map
+                </h2>
+                <div class="flex-grow flex items-center justify-center bg-slate-900/50 rounded-xl p-4 border border-slate-700">
+                    <div class="mermaid text-center">
+                        graph TD
+                        %% Node Styling
+                        classDef root fill:#0f172a,stroke:#00f6ff,stroke-width:3px,color:#fff;
+                        classDef node fill:#1e293b,stroke:#64748b,stroke-width:2px,color:#fff;
+                        classDef rodc fill:#1e293b,stroke:#ff007c,stroke-width:2px,stroke-dasharray: 5 5,color:#fff;
+
+                        A["👑 Root DC<br/>(RootDcwork.work.com)<br/>145.135.0.1"]:::root
+                        B["🔄 ADC<br/>(ADcwork.work.com)<br/>145.135.0.3"]:::node
+                        C["👶 CDC<br/>(home.work.com)<br/>145.135.0.5"]:::node
+                        D["🛡️ RODC<br/>(server3.work.com)<br/>145.135.0.4"]:::rodc
+
+                        A <==>|Full Replication| B
+                        A <-->|Domain Trust| C
+                        A -.->|One-Way Sync| D
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-card rounded-2xl p-8 flex flex-col">
+                <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 text-white">
+                    <i class="fa-solid fa-satellite-dish text-cyber-neon"></i> Live Sync Simulation
+                </h2>
+                <div class="flex-grow flex items-center justify-center bg-slate-900/50 rounded-xl p-6 border border-slate-700 relative h-64">
+                    <svg width="100%" height="100%" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="absolute inset-0 w-full h-full">
+                        <line x1="200" y1="100" x2="100" y2="200" class="sync-line" />
+                        <line x1="200" y1="100" x2="300" y2="200" class="sync-line" />
+                        <line x1="200" y1="100" x2="200" y2="250" class="sync-line-alt" />
+                        
+                        <circle cx="200" cy="100" r="25" fill="#0f172a" stroke="#00f6ff" stroke-width="3"/>
+                        <text x="200" y="105" font-family="FontAwesome" font-size="20" fill="#00f6ff" text-anchor="middle">&#xf233;</text>
+                        <text x="200" y="70" font-family="Inter" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Root DC</text>
+                        
+                        <circle cx="100" cy="200" r="20" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+                        <text x="100" y="205" font-family="FontAwesome" font-size="16" fill="#cbd5e1" text-anchor="middle">&#xf233;</text>
+                        <text x="100" y="235" font-family="Inter" font-size="12" fill="#cbd5e1" text-anchor="middle">ADC</text>
+
+                        <circle cx="300" cy="200" r="20" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+                        <text x="300" y="205" font-family="FontAwesome" font-size="16" fill="#cbd5e1" text-anchor="middle">&#xf233;</text>
+                        <text x="300" y="235" font-family="Inter" font-size="12" fill="#cbd5e1" text-anchor="middle">CDC</text>
+
+                        <circle cx="200" cy="250" r="20" fill="#1e293b" stroke="#ff007c" stroke-width="2" stroke-dasharray="4"/>
+                        <text x="200" y="255" font-family="FontAwesome" font-size="16" fill="#ff007c" text-anchor="middle">&#xf023;</text>
+                        <text x="200" y="285" font-family="Inter" font-size="12" fill="#ff007c" text-anchor="middle">RODC</text>
+                    </svg>
+                </div>
+            </section>
+        </div>
+
+        <section class="glass-card rounded-2xl overflow-hidden">
+            <div class="p-8 border-b border-slate-700">
+                <h2 class="text-2xl font-bold flex items-center gap-3 text-white">
+                    <i class="fa-solid fa-microchip text-cyber-accent"></i> Environment Specifications
+                </h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-800/50 text-cyber-accent uppercase text-sm tracking-wider font-mono">
+                            <th class="p-6 font-semibold"><i class="fa-solid fa-server mr-2"></i>Role / Hostname</th>
+                            <th class="p-6 font-semibold"><i class="fa-solid fa-globe mr-2"></i>Domain Name</th>
+                            <th class="p-6 font-semibold"><i class="fa-solid fa-network-wired mr-2"></i>IP Configuration</th>
+                            <th class="p-6 font-semibold"><i class="fa-solid fa-book-journal-whills mr-2"></i>DNS Settings</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-700/50 text-slate-300">
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="p-6">
+                                <div class="font-bold text-white text-lg">Root DC</div>
+                                <div class="text-sm text-slate-400 font-mono">RootDcwork</div>
+                                <div class="text-xs text-cyber-neon mt-1">Windows 2016 Std (1607)</div>
+                            </td>
+                            <td class="p-6 font-medium">work.com</td>
+                            <td class="p-6 font-mono text-sm">
+                                <div class="text-cyber-accent">145.135.0.1</div>
+                                <div class="text-slate-500 text-xs">Subnet: 255.255.0.0</div>
+                            </td>
+                            <td class="p-6 font-mono text-sm">Pri: 145.135.0.1</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="p-6">
+                                <div class="font-bold text-white text-lg">ADC</div>
+                                <div class="text-sm text-slate-400 font-mono">ADcwork</div>
+                                <div class="text-xs text-cyber-neon mt-1">Windows 2016 Std (1607)</div>
+                            </td>
+                            <td class="p-6 font-medium">ADcwork.work.com</td>
+                            <td class="p-6 font-mono text-sm">
+                                <div class="text-cyber-accent">145.135.0.3</div>
+                                <div class="text-slate-500 text-xs">Subnet: 255.255.0.0</div>
+                            </td>
+                            <td class="p-6 font-mono text-sm">Pri: 145.135.0.1</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="p-6">
+                                <div class="font-bold text-white text-lg">CDC</div>
+                                <div class="text-sm text-slate-400 font-mono">home</div>
+                                <div class="text-xs text-cyber-neon mt-1">Windows 2016 Std (1607)</div>
+                            </td>
+                            <td class="p-6 font-medium">home.work.com</td>
+                            <td class="p-6 font-mono text-sm">
+                                <div class="text-cyber-accent">145.135.0.5</div>
+                                <div class="text-slate-500 text-xs">Subnet: 255.255.0.0</div>
+                            </td>
+                            <td class="p-6 font-mono text-sm">
+                                <div>Pri: 145.135.0.5</div>
+                                <div class="text-slate-400">Pref: 145.135.0.1</div>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="p-6">
+                                <div class="font-bold text-white text-lg flex items-center gap-2">
+                                    RODC <i class="fa-solid fa-lock text-cyber-neon text-sm"></i>
+                                </div>
+                                <div class="text-sm text-slate-400 font-mono">server3</div>
+                                <div class="text-xs text-cyber-neon mt-1">Windows 2016 Std (1607)</div>
+                            </td>
+                            <td class="p-6 font-medium">server3.work.com</td>
+                            <td class="p-6 font-mono text-sm">
+                                <div class="text-cyber-accent">145.135.0.4</div>
+                                <div class="text-slate-500 text-xs">Subnet: 255.255.0.0</div>
+                            </td>
+                            <td class="p-6 font-mono text-sm">Pri: 145.135.0.1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            themeVariables: {
+                darkMode: true,
+                background: 'transparent',
+                primaryColor: '#1e293b',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#00f6ff',
+                lineColor: '#00f6ff',
+                secondaryColor: '#ff007c',
+                tertiaryColor: '#0f172a'
+            }
+        });
+    </script>
+</body>
+</html>
