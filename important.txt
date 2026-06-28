@@ -1,0 +1,3 @@
+(1).Configured a static IP address for the Domain Controller and set the preferred DNS server address to the Domain Controller's own IP address 
+    instead of the loopback address (127.0.0.1). This ensures that the server uses its own DNS service for domain name resolution and Active
+    Directory operations.
